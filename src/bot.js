@@ -10,6 +10,7 @@ const {
 	getHelp,
 	getTypes,
 	getCategoriesByType,
+	traceAnime,
 } = require('./functions');
 require('dotenv').config();
 
@@ -102,6 +103,36 @@ client.on('messageCreate', message => {
 			} else {
 				message.reply('Invalid type');
 			}
+		} else {
+			message.reply('Invalid command');
+		}
+	}
+
+	if (message.content.startsWith('#t')) {
+		const args = message.content.split(' ');
+		const [command, image_url] = args;
+
+		if (command === '#t') {
+			const possibleLists = traceAnime(image_url);
+			possibleLists.then(data => {
+				const { filename, episode, from, to, similarity, video } =
+					data[0];
+				const title = filename.split('.')[0];
+				const similarity_percent = Math.floor(similarity * 100);
+
+				const start =
+					Math.floor(from / 60) + ':' + (Math.floor(from) % 60);
+				const end = Math.floor(to / 60) + ':' + (Math.floor(to) % 60);
+				const result = `
+					[Anime title]: ${title} 
+					[Episode]: ${episode} 
+					[Found at]: ${start} - ${end} 
+					[Similarity]: ${similarity_percent}% 
+					[Video]: ${video}
+					`;
+
+				message.reply(result);
+			});
 		} else {
 			message.reply('Invalid command');
 		}

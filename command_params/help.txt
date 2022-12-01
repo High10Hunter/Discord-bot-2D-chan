@@ -5,3 +5,4 @@
 #g-<type>-<category> : generate pics with specific <type> and <category>
 /type : display available <type>
 /category-<type> : display available <category> of <type>
+#t : trace anime from image

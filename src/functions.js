@@ -62,6 +62,17 @@ const getCategoriesByType = type => {
 	}
 };
 
+const traceAnime = async image_url => {
+	const response = await fetch(
+		`https://api.trace.moe/search?url=${image_url}`
+	);
+
+	const data = await response.json();
+	const { result } = data;
+
+	return result;
+};
+
 module.exports = {
 	getAnimeGirl,
 	randomSFW,
@@ -69,4 +80,5 @@ module.exports = {
 	getHelp,
 	getTypes,
 	getCategoriesByType,
+	traceAnime,
 };
