@@ -1,4 +1,4 @@
-# Discord-bot-2D-chan
+# Discord-bot-2D-chan (☞ﾟヮﾟ)☞
 A discord bot can generate random anime pics and trace anime from pics
 
 ## Features
